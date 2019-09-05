@@ -1,0 +1,179 @@
+<div class="toolbar">
+  <h5>Create Test Case</h5>
+</div>
+
+<div id="create-test-case">
+  <form [formGroup]="testCaseForm" (ngSubmit)="onSubmit()">
+
+    <div class="row example-row">
+      <div class="col-sm-6 col-md-6 col-lg-6">
+        <div class="form-group">
+          <label for="name">Test Case Title</label>
+          <input #name formControlName="name" required type="text" class="form-control" placeholder="Test Case Title">
+        </div>
+        <div
+          *ngIf="submitted || testCaseForm.valid && formControls.name.errors && formControls.name.dirty || formControls.name.touched">
+          <small *ngIf="formControls.name.errors?.required" class="validation-message">Please enter a Test Case
+            Title.</small>
+          <small *ngIf="formControls.name.errors?.pattern" class="validation-message">Test Case title must always start
+            with a character. Title cannot have special characters except dot, underscore and hyphen.</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="row example-row">
+      <div class="col-sm-3 col-md-3 col-lg-3">
+        <div class="form-group">
+          <label for="testCaseStatus">Status</label>
+          <select class="custom-select" #testCaseStatus formControlName="testCaseStatus" required>
+            <option value="DRAFT">Draft</option>
+            <option value="READY_FOR_REVIEW">Ready for review</option>
+            <option value="REVIEW_IN_PROGRESS">Review in Progress</option>
+            <option value="REWORK">Rework</option>
+            <option value="OBSOLETE">Obsolete</option>
+            <option value="FUTURE">Future</option>
+            <option value="FINAL">Final</option>
+          </select>
+        </div>
+        <div
+          *ngIf="submitted || testCaseForm.valid && formControls.testCaseStatus.errors && formControls.testCaseStatus.dirty || formControls.testCaseStatus.touched">
+          <small *ngIf="formControls.testCaseStatus.errors?.required" class="validation-message">This field is
+            required.</small>
+        </div>
+      </div>
+
+      <div class="col-sm-3 col-md-3 col-lg-3">
+        <div class="form-group">
+          <label for="testImportance">Importance</label>
+          <select class="custom-select" #testImportance formControlName="testImportance" required>
+            <option value="HIGH">High</option>
+            <option value="MEDIUM">Medium</option>
+            <option value="LOW">Low</option>
+          </select>
+        </div>
+        <div
+          *ngIf="submitted || testCaseForm.valid && formControls.testImportance.errors && formControls.testImportance.dirty || formControls.testImportance.touched">
+          <small *ngIf="formControls.testImportance.errors?.required" class="validation-message">This field is
+            required.</small>
+        </div>
+      </div>
+
+      <div class="col-sm-3 col-md-3 col-lg-3">
+        <div class="form-group">
+          <label for="executionType">Execution type</label>
+          <select class="custom-select" #executionType formControlName="executionType" required>
+            <option value="MANUAL">Manual</option>
+            <option value="AUTOMATED">Automation</option>
+          </select>
+        </div>
+        <div
+          *ngIf="submitted || testCaseForm.valid && formControls.executionType.errors && formControls.executionType.dirty || formControls.executionType.touched">
+          <small *ngIf="formControls.executionType.errors?.required" class="validation-message">This field is
+            required.</small>
+        </div>
+      </div>
+
+      <!-- <div class="col-sm-3 col-md-3 col-lg-3">
+        <div class="form-group">
+          <label for="executionTime">Execution time</label>
+          <input disabled type="number" class="form-control" #executionTime formControlName="executionTime" required>
+        </div>
+        <div
+          *ngIf="submitted || testCaseForm.valid && formControls.executionTime.errors && formControls.executionTime.dirty || formControls.executionTime.touched">
+          <small *ngIf="formControls.executionTime.errors?.required" class="validation-message">This field is
+            required.</small>
+        </div>
+      </div> -->
+
+    </div>
+
+    <div class="row example-row">
+      <div class="col-sm-6 col-md-6 col-lg-6">
+        <div class="form-group">
+          <label for="summary">Summary</label>
+          <textarea #summary formControlName="summary" required rows="7" type="text" class="form-control"
+            placeholder="Enter your summary..."></textarea>
+        </div>
+        <div
+          *ngIf="submitted || testCaseForm.valid && formControls.summary.errors && formControls.summary.dirty || formControls.summary.touched">
+          <small *ngIf="formControls.summary.errors?.required" class="validation-message">This field is
+            required.</small>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-md-6 col-lg-6">
+        <div class="form-group">
+          <label for="preconditions">Preconditions</label>
+          <textarea #preconditions formControlName="preconditions" required rows="7" type="text" class="form-control"
+            placeholder="Enter your preconditions..."></textarea>
+        </div>
+        <div
+          *ngIf="submitted || testCaseForm.valid && formControls.preconditions.errors && formControls.preconditions.dirty || formControls.preconditions.touched">
+          <small *ngIf="formControls.preconditions.errors?.required" class="validation-message">This field is
+            required.</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="step-table">
+      <label>Test Case Steps</label>
+      <table class="table table-sm">
+        <thead class="thead-light">
+          <tr>
+            <th>No.</th>
+            <th>Step Actions</th>
+            <th>Expected Results</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let step of stepsArray">
+            <td>{{ step.number }}</td>
+            <td>{{ step.actions }}</td>
+            <td>{{ step.expectedResults }}</td>
+            <td>
+              <i class="material-icons" id="clear">delete_forever</i>
+            </td>
+          </tr>
+
+          <tr *ngIf="show" [formGroup]="stepForm">
+            <td> {{ getNumber() }} </td>
+            <td><textarea class="form-control" type="text" formControlName="actions" placeholder="Step Action"
+                rows="3" required></textarea>
+              <div class="validation-message"
+                *ngIf="submitted || stepForm.valid && stepControls.actions.errors && stepControls.actions.dirty || stepControls.actions.touched">
+                <small *ngIf="stepControls.actions.errors?.required">This field is required.</small>
+              </div>
+            </td>
+
+            <td><textarea class="form-control" type="text" formControlName="expectedResults"
+                placeholder="Expected Results" rows="3" required></textarea>
+              <div class="validation-message"
+                *ngIf="submitted || stepForm.valid && stepControls.expectedResults.errors && stepControls.expectedResults.dirty || stepControls.expectedResults.touched">
+                <small *ngIf="stepControls.expectedResults.errors?.required">This field is required.</small>
+              </div>
+            </td>
+
+            <td>
+              <i class="material-icons" style="color: #3f51b5;" (click)="addStep()">check_circle</i>
+              <i class="material-icons" style="color: crimson;" (click)="discardStep()">cancel</i>
+            </td>
+        </tbody>
+      </table>
+      <button type="button" class="btn btn-default ripple" (click)="addRow()">Add Step</button>
+    </div>
+
+    <!-- Error message -->
+    <div class="alert alert-danger" *ngIf="serverErrors">
+      {{ serverErrors }}
+    </div>
+
+    <div class="actions">
+      <button type="button" class="btn btn-cancel" (click)="cancel()">Cancel</button>
+      <button type="submit" class="btn btn-default">Create &nbsp;
+        <i class="fa fa-spinner fa-spin" *ngIf="loading"></i>
+      </button>
+    </div>
+
+  </form>
+</div>

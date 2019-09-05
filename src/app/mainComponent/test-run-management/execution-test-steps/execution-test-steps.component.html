@@ -1,0 +1,58 @@
+<div class="toolbar">
+  <h5>{{ testcase.name }}</h5>
+</div>
+
+<div class="loader" *ngIf="loading"></div>
+
+<div class="details">
+  <div class="row">
+    <div class="col-sm-6 col-md-6 col-lg-6">
+      <small>Test Case Title</small><br />
+      <p>{{ testcase.name }}</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-11 col-md-11 col-lg-11">
+      <small>Test Case Description</small><br />
+      <p>{{ testcase.summary }}
+      </p>
+    </div>
+  </div>
+
+  <div class="table-responsive-sm table-responsive-md table-responsive-lg" id="steps-table">
+    <h5>Steps</h5>
+    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table" [formGroup]="executionForm">
+      <thead class="thead-light">
+        <tr>
+          <th>No</th>
+          <th>Step Actions</th>
+          <th>Expected Results</th>
+          <th>Actual Results</th>
+          <th class="status">Status</th>
+        </tr>
+      </thead>
+      <tbody formArrayName="steps">
+        <tr *ngFor="let step of steps">
+          <td>{{ step.number }}</td>
+          <td>{{ step.actions }}</td>
+          <td>{{ step.expectedResults }}</td>
+          <td *ngFor="let step of executionForm.get('steps').controls; let i = index" formGroupName="{{i}}">
+            <textarea class="form-control" type="text" formControlName="notes" rows="1" required></textarea>
+          </td>
+          <td *ngFor="let step of executionForm.get('steps').controls; let i = index" formGroupName="{{i}}">
+            <select class="custom-select" #result formControlName="result" required>
+              <option value="PASSED">Passed</option>
+              <option value="FAILED">Failed</option>
+              <option value="BLOCKED">Blocked</option>
+            </select>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="actions">
+    <button type="button" class="btn btn-default ripple" (click)="onSubmit()">Save</button>
+  </div>
+
+</div>

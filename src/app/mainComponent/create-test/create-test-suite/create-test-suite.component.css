@@ -1,0 +1,41 @@
+.toolbar {
+  margin: 20px 20px 0px;
+}
+
+.row {
+  width: 100%;
+}
+
+.form-group {
+  margin-top: 1rem;
+  margin-bottom: 0px;
+}
+
+#create-test-suite {
+  padding: 0px 20px;
+}
+
+.actions {
+  float: right;
+  padding: 20px;
+}
+
+.actions .btn {
+  margin: 0px 10px;
+  padding: 7px 20px;
+}
+
+.actions .save {
+  color: #ffffff;
+}
+
+small.validation-message {
+  color: #ed5558;
+}
+
+.alert {
+  padding: 5px;
+  width: 47%;
+  margin-top: 12px;
+  line-height: 25px;
+}

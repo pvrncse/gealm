@@ -1,0 +1,47 @@
+<div class="toolbar">
+  <h5>{{ testRun.name }}</h5>
+</div>
+
+<div class="loader" *ngIf="loading"></div>
+
+<div class="details">
+  <div class="row">
+    <div class="col-sm-6 col-md-6 col-lg-6">
+      <small>Test Run Title</small><br />
+      <p>{{ testRun.name }}</p>
+    </div>
+    <div class="col-sm-3 col-md-3 col-lg-3">
+      <small>Build Name</small><br />
+      <select name="buildId" class="custom-select" (change)="selectBuild($event)">
+        <option *ngFor="let build of builds" value="{{ build.id }}">{{ build.name }}</option>
+      </select>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-11 col-md-11 col-lg-11">
+      <small>Test Run Description</small><br />
+      <p>{{ testRun.runDescription }} </p>
+    </div>
+  </div>
+
+  <div class="table-responsive-sm table-responsive-md table-responsive-lg" id="testcase-table">
+    <h5>Test Cases</h5>
+    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table">
+      <thead class="thead-light">
+        <tr>
+          <th>Test Case Name</th>
+          <th>Execution Notes</th>
+          <th class="status">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let testCase of testCases">
+          <td (click)="execSteps(testCase)">{{ testCase.name }}</td>
+          <td (click)="execSteps(testCase)"></td>
+          <td (click)="execSteps(testCase)">{{ testCase.executionStatus }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>

@@ -1,0 +1,52 @@
+<div class="container-fluid">
+  <div class="row align-items-center">
+    <div class="col-sm-8 col-md-8 col-lg-8 left">
+      <h1>GESL - ALM</h1>
+    </div>
+    <div class="col-sm-4 col-md-4 col-lg-4 right">
+      <form #loginForm="ngForm" class="form-horizontal needs-validation"
+        (ngSubmit)="loginForm.valid && onSubmit(loginForm)">
+
+        <div class="heading">Login</div>
+        <div class="heading">GESL - ALM</div>
+
+        <div class="form-group">
+          <i class="fa fa-user"></i><input #username="ngModel" [(ngModel)]="verifiedUser.username" required
+            name="username" type="text" class="form-control" placeholder="User Name">
+        </div>
+        <div class="validation-message" *ngIf="loginForm.submitted && !username.valid">
+          <small>Please enter your username.</small>
+        </div>
+
+        <div class="form-group">
+          <i class="fa fa-lock"></i><input #password="ngModel" [(ngModel)]="verifiedUser.password" required
+            name="password" type="password" class="form-control" placeholder="Password">
+        </div>
+        <div  class="validation-message" *ngIf="loginForm.submitted && password.errors">
+          <small *ngIf="password.errors.required">Please enter your password.</small>
+        </div>
+
+        <div class="form-group">
+          <button type="submit" class="btn btn-default ripple">Login &nbsp;
+            <i class="fa fa-spinner fa-spin" *ngIf="loading"></i>
+          </button>
+          <!-- <label class="stayInLogin"><input type="checkbox" name="stayInLogin"> Stay in
+            Login</label> -->
+        </div>
+
+        <!-- Error message -->
+        <div class="alert alert-danger" *ngIf="serverErrors">
+          {{ serverErrors }}
+        </div>
+
+        <div class="form-group">
+          <a routerLink="/forgotPassword" class="forgot_password" routerLinkActive="active">Forgot Password?</a>
+          <a routerLink="/register" class="register" routerLinkActive="active">Register</a>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>
+
+<router-outlet></router-outlet>

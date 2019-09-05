@@ -1,0 +1,27 @@
+.container h5, .container form {
+  margin: 20px;
+}
+
+.form-group {
+  margin-top: 1rem;
+  margin-bottom: 0px;
+}
+
+
+.btn {
+  margin: 20px 0px;
+  color: #ffffff;
+}
+
+.validation-message{
+  color:#ed5558;
+  margin-left: 20px;
+}
+
+.alert {
+  padding: 5px;
+  width: 47%;
+  margin: -15px 0px 5px 10px;
+  line-height: 25px;
+}
+

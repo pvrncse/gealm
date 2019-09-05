@@ -1,0 +1,24 @@
+.toolbar {
+  margin: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.dataTables_wrapper .dataTables_length {
+  margin-left: 15px;
+  margin-right: -15px;
+}
+
+.projects-table {
+  padding: 10px 30px;
+}
+
+.projects-table td {
+  padding-left: 20px;
+}
+
+.projects-table .btn {
+  color: white;
+  line-height: 17px;
+  border-radius: 0px;
+}

@@ -1,0 +1,171 @@
+<div class="sidenav">
+  <div class="project-list">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Project List</th>
+        </tr>
+      </thead>
+
+      <tbody class="tbody">
+        <tr *ngFor="let project of projects">
+          <td (click)="projectDetails(project.id)">{{ project.name }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="content">
+  <div class="toolbar">
+    <h5>Create Project</h5>
+  </div>
+
+  <div class="create-project">
+    <form [formGroup]="createProjectForm" (ngSubmit)="onSubmit()">
+      <!-- <div class="row">
+        <div class="col-sm-6 col-md-6 col-lg-6">
+          <div class="form-group">
+            <label for="existProject">Create from existing Test Project?</label>
+            <input #existProject type="text" class="form-control" formControlName="existProject"
+              placeholder="Enter Project Name" disabled>
+          </div>
+        </div>
+      </div> -->
+
+      <div class="row">
+        <div class="col-sm-6 col-md-6 col-lg-6">
+          <div class="form-group">
+            <label for="name">Title:</label>
+            <input
+              #name
+              formControlName="name"
+              required
+              type="text"
+              class="form-control"
+              placeholder="Enter Project Title"
+            />
+          </div>
+          <div
+            class="validation-message"
+            *ngIf="
+              submitted ||
+              (createProjectForm.valid &&
+                formControls.name.errors &&
+                formControls.name.dirty) ||
+              formControls.name.touched
+            "
+          >
+            <!-- <small *ngIf="formControls.name.errors?.required">Please enter a Project Title.</small>
+            <small *ngIf="formControls.name.errors?.pattern">Project title must always start with a character. Title
+                cannot have special characters except dot, underscore and hyphen.</small> -->
+            Please enter a Project Title
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-6 col-md-6 col-lg-6">
+          <div class="form-group">
+            <label for="prefix">Prefix(used for Test case ID):</label>
+            <input
+              #prefix
+              formControlName="prefix"
+              required
+              type="text"
+              class="form-control"
+              placeholder="Enter Prefix Name"
+            />
+          </div>
+          <div
+            class="validation-message"
+            *ngIf="
+              submitted ||
+              (createProjectForm.valid &&
+                formControls.prefix.errors &&
+                formControls.prefix.dirty) ||
+              formControls.prefix.touched
+            "
+          >
+            <small *ngIf="formControls.prefix.errors?.required"
+              >This field is required.</small
+            >
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="notes">Description:</label>
+        <textarea
+          #notes
+          formControlName="notes"
+          class="form-control"
+          rows="6"
+          required
+          placeholder="Description"
+        ></textarea>
+      </div>
+      <div
+        class="validation-message"
+        *ngIf="
+          submitted ||
+          (createProjectForm.valid &&
+            formControls.notes.errors &&
+            formControls.notes.dirty) ||
+          formControls.notes.touched
+        "
+      >
+        <small *ngIf="formControls.notes.errors?.required"
+          >This field is required.</small
+        >
+      </div>
+
+      <div class="form-group">
+        <!-- <div class="col-sm-offset-2 col-sm-10"> -->
+        <div class="checkbox">
+          <label>Enhanced Features</label>
+          <ul>
+            <label
+              ><input type="checkbox" formControlName="requirement" />
+              Requirements</label
+            ><br />
+            <label
+              ><input type="checkbox" formControlName="testPriority" /> Testing
+              Priority</label
+            ><br />
+            <label
+              ><input type="checkbox" formControlName="testAutomation" /> Test
+              Automation(Api keys)</label
+            ><br />
+            <label
+              ><input type="checkbox" formControlName="inventory" />
+              Inventory</label
+            ><br />
+            <label
+              ><input type="checkbox" formControlName="active" /> Active</label
+            ><br />
+            <label
+              ><input type="checkbox" formControlName="public" /> Public</label
+            ><br />
+          </ul>
+        </div>
+        <!-- </div> -->
+      </div>
+
+      <!-- Error message -->
+      <div class="alert alert-danger" *ngIf="serverErrors">
+        {{ serverErrors }}
+      </div>
+
+      <div class="actions">
+        <button type="button" class="btn btn-cancel ripple" (click)="cancel()">
+          Cancel
+        </button>
+        <button type="submit" class="btn btn-default ripple">
+          Create &nbsp;
+          <i class="fa fa-spinner fa-spin" *ngIf="loading"></i>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+<div class="flex" (click)="toggleIcon()">
+  <i class="material-icons" [hidden]="!collapsed">add</i>
+  <i class="material-icons" [hidden]="collapsed">remove</i>
+  <a id={{details.id}} (click)="showSuiteDetails(details)">
+    {{details.name}}
+  </a>
+</div>
+
+<div class="tree-margin" [hidden]="collapsed">
+  <app-tree-view *ngFor="let testSuite of details.childTSuites" [details]="testSuite"></app-tree-view>
+  <a class="test-case-margin" *ngFor="let testCase of details.testCase"
+    (click)="showCaseDetails(testCase)">{{testCase.name}}</a>
+</div>

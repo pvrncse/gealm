@@ -1,0 +1,24 @@
+.toolbar {
+  margin: 20px;
+}
+
+.edit-project {
+  margin: 35px;
+}
+
+
+.actions .btn {
+  margin: 10px 10px;
+  border-radius: 12px;
+  letter-spacing: 1px;
+  padding: 7px 20px;
+}
+
+.actions .save {
+	margin-left: 30px;
+  color: #ffffff;
+}
+
+small.validation-message {
+  color: #ed5558;
+}

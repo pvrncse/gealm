@@ -1,0 +1,39 @@
+<div class="toolbar">
+  <h5>Projects</h5>
+  <div>
+    <button type="button" class="btn btn-default ripple" (click)="showForm()" title="Create Project"><i
+        class="fa fa-plus" aria-hidden="true"></i> Create Project</button>
+  </div>
+</div>
+
+<div class="loader" *ngIf="loading"></div>
+
+<div class="table-responsive-sm table-responsive-md table-responsive-lg projects-table">
+  <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table row-border hover">
+    <thead class="thead-light">
+      <tr>
+        <th>Project Title</th>
+        <th>Description</th>
+        <th>Prefix</th>
+        <th style="width: 150px;">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let project of projects">
+        <td>{{ project.name }}</td>
+        <td [innerHTML]="project.notes"></td>
+        <td>{{ project.prefix }}</td>
+        <td>
+          <button type="button" class="btn btn-primary ripple" (click)="showProjectDetails(project.id)"
+            title="Test Plan">
+            <img src="../../../assets/icons/icon1.svg" height="18px" />
+          </button>
+          <span>&nbsp;</span>
+          <button type="button" class="btn btn-info ripple" (click)="showTestRuns(project.id)" title="Test Run">
+            <img src="../../../assets/icons/icon2.svg" height="18px" />
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

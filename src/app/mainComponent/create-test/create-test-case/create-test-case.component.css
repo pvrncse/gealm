@@ -1,0 +1,46 @@
+.toolbar {
+  margin: 20px 20px 0px;
+}
+
+#create-test-case {
+  padding: 0px 20px;
+}
+
+.form-group {
+  margin-top: 1rem;
+  margin-bottom: 0px;
+}
+
+.example-row {
+  width: auto;
+}
+
+.step-table {
+  margin: 30px 0px 0px;
+}
+
+.material-icons {
+  font-size: 26px;
+  cursor: pointer;
+}
+
+.actions {
+  float: right;
+  padding: 20px;
+}
+
+.actions .btn {
+  margin: 0px 10px;
+  padding: 7px 20px;
+}
+
+small.validation-message {
+  color: #ed5558;
+}
+
+.alert {
+  padding: 5px;
+  width: 47%;
+  margin-top: 12px;
+  line-height: 25px;
+}

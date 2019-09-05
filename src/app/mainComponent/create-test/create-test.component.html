@@ -1,0 +1,12 @@
+<div class="sidebar">
+  <div class="loader" *ngIf="loading"></div>
+  <div *ngIf="!loading">
+    <button class="btn btn-default btn-lg" (click)="showDetails()"> {{ project.name }} </button>
+    <app-tree-view *ngFor="let testsuite of data" [details]="testsuite"></app-tree-view>
+  </div>
+</div>
+
+<!-- Page Content -->
+<div class="content">
+  <router-outlet></router-outlet>
+</div>

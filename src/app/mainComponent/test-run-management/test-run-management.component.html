@@ -1,0 +1,12 @@
+<div class="sidebar">
+  <button class="btn btn-default btn-lg"> {{ project.name }}
+  </button>
+
+  <a class="nav-link" [routerLink]="['testRunList', project.id]">Test Run</a>
+  <a class="nav-link" [routerLink]="['builds', project.id]">Build</a>
+  <a class="nav-link" [routerLink]="['testExecutionList', project.id]">Test Execution</a>
+</div>
+
+<div class="content">
+  <router-outlet></router-outlet>
+</div>

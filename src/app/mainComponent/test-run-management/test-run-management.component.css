@@ -1,0 +1,38 @@
+.sidebar {
+  margin: 0;
+  padding: 0;
+  width: 230px;
+  background-color: #fff;
+  position: fixed;
+  height: 100%;
+  overflow: auto;
+  box-shadow: -5px 0px 16px 2px;
+}
+
+.sidebar .btn-default {
+  width: 100%;
+  text-align: start;
+  border-bottom: 1px solid #c0c5ca;
+  white-space: normal;
+  font-size: 18px;
+  word-wrap: break-word;
+  cursor: default;
+  background-color: #ebedef;
+  color: #000;
+}
+
+.sidebar .btn-default:focus {
+  box-shadow: none;
+}
+
+.sidebar .nav-link {
+  margin: 3px 0px 3px 20px;
+  color: black;
+  border-bottom: 1px solid #c0c5ca;
+}
+
+.content {
+  margin-left: 230px;
+  padding: 1px 16px;
+  height: auto;
+}

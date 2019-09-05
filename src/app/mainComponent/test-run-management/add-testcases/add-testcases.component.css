@@ -1,0 +1,23 @@
+input {
+  cursor: pointer;
+  word-wrap: break-word;
+  width: -webkit-fill-available;
+}
+
+.flex {
+  display: flex;
+  padding: 5px 0;
+}
+
+.flex .material-icons {
+  font-size: 20px;
+  line-height: 1.2;
+}
+
+.flex i {
+  cursor: pointer;
+}
+
+.tree-margin {
+  margin: 0px 0px 0px 25px;
+}

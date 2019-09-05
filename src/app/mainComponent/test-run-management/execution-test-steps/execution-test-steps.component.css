@@ -1,0 +1,25 @@
+.toolbar {
+  margin: 20px;
+}
+
+.details {
+  margin: 0px 20px;
+}
+
+.details small {
+  color: #6d6b6b;
+}
+
+.details p {
+  padding: 7px;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+}
+
+#steps-table h5 {
+  margin: 20px 0px;
+}
+
+#steps-table td {
+  padding-left: 20px;
+}

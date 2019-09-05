@@ -1,0 +1,68 @@
+<div class="toolbar">
+  <h5>{{ project.name }}</h5>
+  <div class="actions">
+    <button type="button" class="btn btn-cancel" title="Edit Project" disabled>Edit</button>
+    <button type="button" class="btn btn-default ripple" (click)="showForm(project.id)">
+      <i class="fa fa-plus" aria-hidden="true"></i> Create Test Suite</button>
+  </div>
+</div>
+
+<div class="loader" *ngIf="loading"></div>
+
+<div *ngIf="!loading" class="details">
+  <table class="table_one">
+    <tbody>
+      <tr style="padding-top:10px;">
+        <td>Project Title</td>
+        <td>:&nbsp;&nbsp;</td>
+        <td> {{ project.name }} </td>
+      </tr>
+      <tr>
+        <td>Project Description</td>
+        <td>:</td>
+        <td> {{ project.notes }} </td>
+      </tr>
+      <tr>
+        <td>Prefix</td>
+        <td>:</td>
+        <td> {{ project.prefix }} </td>
+      </tr>
+    </tbody>
+  </table>
+  <p>Enhanced Features</p>
+  <table class="enhanced">
+    <tbody>
+      <tr>
+        <td>Requirements</td>
+        <td>:&nbsp;&nbsp;</td>
+        <td> {{ project.enableRequirements }} </td>
+      </tr>
+      <tr>
+        <td>Testing Priority</td>
+        <td>:</td>
+        <td> {{ project.enableTestPriority }} </td>
+      </tr>
+      <tr>
+        <td>Test Automation (API keys)</td>
+        <td>:</td>
+        <td> {{ project.enableAutomation }} </td>
+      </tr>
+      <tr>
+        <td>Inventory</td>
+        <td>:</td>
+        <td> {{ project.enableInventory }} </td>
+      </tr>
+      <tr>
+        <td>Active</td>
+        <td>:</td>
+        <td> {{ project.active }} </td>
+      </tr>
+      <tr>
+        <td>Public</td>
+        <td>:</td>
+        <td> {{ project.public }} </td>
+      </tr>
+    </tbody>
+
+  </table>
+</div>

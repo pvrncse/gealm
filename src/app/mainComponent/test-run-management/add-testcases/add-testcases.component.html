@@ -1,0 +1,18 @@
+<div class="flex" (click)="toggleIcon()">
+  <i class="material-icons" [hidden]="!collapsed">add</i>
+  <i class="material-icons" [hidden]="collapsed">remove</i>
+  <!-- <div class="custom-control custom-checkbox">
+    <input type="checkbox" class="custom-control-input" id={{details.id}} (click)="addAll($event)">
+    <label class="custom-control-label" for={{details.id}}> {{details.name}}</label>
+  </div> -->
+  <a id={{details.id}}>{{details.name}}</a>
+</div>
+
+<div class="tree-margin" [hidden]="collapsed">
+  <app-add-testcases *ngFor="let testSuite of details.childTSuites" [details]="testSuite"
+    (selectedCases)="onSelect($event)"></app-add-testcases>
+  <div class="custom-control custom-checkbox" *ngFor="let testCase of details.testCase">
+    <input type="checkbox" class="custom-control-input" id={{testCase.id}} (click)="add($event)">
+    <label class="custom-control-label" for={{testCase.id}}>{{testCase.name}}</label>
+  </div>
+</div>

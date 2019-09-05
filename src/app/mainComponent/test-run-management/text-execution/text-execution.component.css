@@ -1,0 +1,16 @@
+.toolbar {
+  margin: 20px;
+}
+
+.testexec-table {
+  margin: 30px 25px;
+}
+
+.testexec-table thead th.status {
+  width: 213px;
+}
+
+.testexec-table td {
+  padding-left: 20px;
+  cursor: pointer;
+}

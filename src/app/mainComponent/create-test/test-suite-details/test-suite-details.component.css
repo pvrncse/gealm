@@ -1,0 +1,15 @@
+.toolbar {
+  margin: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn {
+  margin: 0px 6px;
+}
+
+table {
+  border-collapse: separate;
+  border-spacing: 20px 1em;
+  margin-top: -17px;
+}

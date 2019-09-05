@@ -1,0 +1,88 @@
+<div class="toolbar">
+  <h5>Test Run</h5>
+  <div>
+    <button type="button" class="btn btn-default ripple" (click)="showForm()">
+      <i class="fa fa-plus" aria-hidden="true"></i> Create Test Run</button>
+  </div>
+</div>
+
+<div class="loader" *ngIf="loading"></div>
+
+<div class="table-responsive-sm table-responsive-md table-responsive-lg testrun-table">
+  <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table">
+    <thead class="thead-light">
+      <tr>
+        <th>Test Run Title</th>
+        <th>Description</th>
+        <th>Test Cases</th>
+        <th class="action">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let testRun of testRuns">
+        <td>{{ testRun.name }}</td>
+        <td>{{ testRun.notes }}</td>
+        <td>#</td>
+        <td>
+          <button type="button" class="btn btn-default ripple" data-toggle="modal" (click)="getDetails(testRun)"
+            data-target=".bd-example-modal-lg" data-backdrop="false">
+            Add/Remove Test Cases
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div id="add-remove" class="modal bd-example-modal-lg" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <!-- <h5 class="modal-title">Add Test Cases</h5> -->
+        <ul class="nav nav-pills">
+          <li class="nav-item">
+            <a class="nav-link active" data-toggle="pill" href="#add">Add Test Cases</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="pill" href="#remove">Remove Test Cases</a>
+          </li>
+        </ul>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true" style="font-size: 20px;">&times;</span>
+        </button>
+      </div>
+
+      <div class="loader" *ngIf="loadModal" style="top: 15px"></div>
+
+      <div class="modal-body">
+        <div class="tab-content">
+          <div class="tab-pane container active" id="add">
+            <app-add-testcases *ngFor="let testsuite of suites" [details]="testsuite"
+              (selectedCases)="onSelect($event)">
+            </app-add-testcases>
+          </div>
+          <div class="tab-pane container fade" id="remove">
+            <div class="custom-control custom-checkbox" *ngFor="let case of cases">
+              <input type="checkbox" class="custom-control-input" id={{case.id}} (change)="onUncheck($event)"
+                checked="true">
+              <label class="custom-control-label" for={{case.id}}>{{case.name}}</label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default ripple" data-dismiss="modal" title="Add TestCases to TestRun"
+          (click)="addTCs()" [disabled]="isDisabled">
+          <i class="fa fa-plus" aria-hidden="true"></i> Add &nbsp;
+          <i class="fa fa-spinner fa-spin" *ngIf="loadingAdd"></i>
+        </button>
+        <button type="button" class="btn btn-default ripple" data-dismiss="modal" title="Remove TestCases from TestRun"
+          [disabled]="isEnabled">Remove</button>
+        <button type="button" class="btn btn-cancel" data-dismiss="modal">Cancel</button>
+      </div>
+
+    </div>
+  </div>
+</div>

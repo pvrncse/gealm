@@ -1,0 +1,48 @@
+<div class="toolbar">
+  <h5>Create Test Suite</h5>
+</div>
+
+<div id="create-test-suite">
+  <form [formGroup]="testSuiteForm" (ngSubmit)="onSubmit()">
+
+    <div class="row">
+      <div class="col-sm-6 col-md-6 col-lg-6">
+        <div class="form-group">
+          <label for="name">Test Suite Title</label>
+          <input #name formControlName="name" required type="text" class="form-control" placeholder="Test Suite Title">
+        </div>
+        <div 
+          *ngIf="submitted || testSuiteForm.valid && formControls.name.errors && formControls.name.dirty || formControls.name.touched">
+          <small *ngIf="formControls.name.errors?.required" class="validation-message">Please enter a Test Suite Title.</small>
+          <small *ngIf="formControls.name.errors?.pattern" class="validation-message">Test Suite title must always start with a character. Title
+            cannot have special characters except dot, underscore and hyphen.</small>
+      </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="details">Description</label>
+      <textarea #details formControlName="details" class="form-control" rows="8" required
+        placeholder="Enter Your Description"></textarea>
+    </div>
+    <div
+      *ngIf="submitted || testSuiteForm.valid && formControls.details.errors && formControls.details.dirty || formControls.details.touched">
+      <small *ngIf="formControls.details.errors?.required" class="validation-message">This field is
+        required.</small>
+    </div>
+
+    <!-- Error message -->
+    <div class="alert alert-danger" *ngIf="serverErrors">
+      {{ serverErrors }}
+    </div>
+
+
+    <div class="actions">
+      <button type="button" class="btn btn-cancel" (click)="cancel()">Cancel</button>
+      <button type="submit" class="btn btn-default">Create &nbsp;
+        <i class="fa fa-spinner fa-spin" *ngIf="loading"></i>
+      </button>
+    </div>
+
+  </form>
+</div>

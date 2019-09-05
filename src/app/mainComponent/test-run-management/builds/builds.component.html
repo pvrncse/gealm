@@ -1,0 +1,33 @@
+<div class="toolbar">
+  <h5>Builds</h5>
+  <div>
+    <button type="button" class="btn btn-default ripple" (click)="showForm()">
+      <i class="fa fa-plus" aria-hidden="true"></i> Create Build</button>
+  </div>
+</div>
+
+<div class="col-sm-3 col-md-3 col-lg-3">
+  <label for="testPlanId">Test Run :</label>
+  <select class="custom-select" name="testPlanId" (change)="selectRun($event)">
+    <option *ngFor="let run of testRuns" value="{{run.id}}">{{run.name}}</option>
+  </select>
+</div>
+
+<div class="loader" *ngIf="loading"></div>
+
+<div class="table-responsive-sm table-responsive-md table-responsive-lg builds-table">
+  <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table">
+    <thead class="thead-light">
+      <tr>
+        <th>Build Title</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let build of builds">
+        <td>{{ build.name }}</td>
+        <td>{{ build.notes }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

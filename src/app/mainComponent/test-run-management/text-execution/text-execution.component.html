@@ -1,0 +1,30 @@
+<div class="toolbar">
+  <h5>Test Execution</h5>
+</div>
+
+<div class="loader" *ngIf="loading"></div>
+
+<div class="table-responsive-sm table-responsive-md table-responsive-lg testexec-table">
+  <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table">
+    <thead class="thead-light">
+      <tr>
+        <th>Test Run Title</th>
+        <th>Start Time</th>
+        <th>End Time</th>
+        <!-- <th>Tested By</th> -->
+        <th>Exec (Time)</th>
+        <th class="status">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let testExec of testExecutions">
+        <td (click)="showExecTCs(testExec.testRunId)">{{ testExec.testRunName }}</td>
+        <td (click)="showExecTCs(testExec.testRunId)">{{ testExec.startDate }}</td>
+        <td (click)="showExecTCs(testExec.testRunId)">{{ testExec.endDate }}</td>
+        <!-- <td>#</td> -->
+        <td (click)="showExecTCs(testExec.testRunId)">{{ testExec.excecutionDuration }}</td>
+        <td>{{ testExec.executionStatus }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

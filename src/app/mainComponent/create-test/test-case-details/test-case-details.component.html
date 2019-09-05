@@ -1,0 +1,99 @@
+<div class="toolbar">
+  <h5>{{ testCase.name }}</h5>
+  <div class="actions">
+    <button type="button" class="btn btn-cancel" title="Edit Test Case" disabled>Edit</button>
+  </div>
+</div>
+
+<div class="loader" *ngIf="loading"></div>
+
+<table *ngIf="!loading" class="table_one">
+  <tbody>
+    <tr style="padding-top:10px;">
+      <td>Test Case Title</td>
+      <td>:&nbsp;&nbsp;</td>
+      <td> {{ testCase.name }} </td>
+    </tr>
+    <tr>
+      <td>Test Case Summary</td>
+      <td>:</td>
+      <td> {{ testCase.summary }} </td>
+    </tr>
+    <tr>
+      <td>Test Case Preconditions</td>
+      <td>:</td>
+      <td> {{ testCase.preconditions }} </td>
+    </tr>
+    <tr>
+      <td>Test Case Status</td>
+      <td>:</td>
+      <td> {{ testCase.testCaseStatus }} </td>
+    </tr>
+    <tr>
+      <td>Test Case Importance</td>
+      <td>:</td>
+      <td> {{ testCase.testImportance }} </td>
+    </tr>
+    <tr>
+      <td>Test Case Execution Type</td>
+      <td>:</td>
+      <td> {{ testCase.executionType }} </td>
+    </tr>
+
+  </tbody>
+</table>
+
+<div *ngIf="!loading" class="step-table">
+  <p>Test Case Steps</p>
+  <table class="table table-sm">
+    <thead class="thead-light">
+      <tr>
+        <th>#</th>
+        <th>Step Actions</th>
+        <th>Expected Results</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let step of testCase.steps">
+        <td>{{ step.number }}</td>
+        <td>{{ step.actions }}</td>
+        <td>{{ step.expectedResults }}</td>
+        <td id="clear"><i class="material-icons">delete_forever</i></td>
+      </tr>
+
+      <tr *ngIf="show" [formGroup]="stepForm">
+        <td> {{ getNumber() }} </td>
+        <td><textarea class="form-control" type="text" formControlName="actions" placeholder="Step Action" rows="3"
+            required></textarea>
+          <div class="validation-message"
+            *ngIf="submitted || stepForm.valid && formControls.actions.errors && formControls.actions.dirty || formControls.actions.touched">
+            <small *ngIf="formControls.actions.errors?.required">This field is required.</small>
+          </div>
+        </td>
+
+        <td><textarea class="form-control" type="text" formControlName="expectedResults" placeholder="Expected Results"
+            rows="3" required></textarea>
+          <div class="validation-message"
+            *ngIf="submitted || stepForm.valid && formControls.expectedResults.errors && formControls.expectedResults.dirty || formControls.expectedResults.touched">
+            <small *ngIf="formControls.expectedResults.errors?.required">This field is required.</small>
+          </div>
+        </td>
+
+        <!-- <td><select class="custom-select" type="text" formControlName="executionType" required>
+            <option value="MANUAL">Manual</option>
+            <option value="AUTOMATED">Automation</option>
+          </select>
+        </td> -->
+        <td id="done">
+          <button type="button" class="btn btn-default ripple" title="Create Step" (click)="addStep()">
+            Create<i class="fa fa-spinner fa-spin" *ngIf="loadBtn"></i></button><br />
+          <button type="reset" class="btn btn-cancel" (click)="discardStep()">Cancel</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <button type="button" class="btn btn-default ripple" (click)="addRow()"><i class="fa fa-plus" aria-hidden="true"></i>
+    Add Step</button>
+</div>

@@ -1,0 +1,64 @@
+<div class="toolbar">
+  <h5>Create Build</h5>
+</div>
+
+<div id="build">
+  <form [formGroup]="buildForm" (ngSubmit)="onSubmit()">
+
+    <div class="row">
+      <div class="col-sm-6 col-md-6 col-lg-6">
+        <div class="form-group">
+          <label for="name">Build Title :</label>
+          <input #name formControlName="name" required type="text" class="form-control" placeholder="Build Title">
+        </div>
+        <div
+          *ngIf="submitted || buildForm.valid && formControls.name.errors && formControls.name.dirty || formControls.name.touched">
+          <small *ngIf="formControls.name.errors?.required" class="validation-message">Please enter a Build Title.</small>
+          <small *ngIf="formControls.name.errors?.pattern" class="validation-message">Build title must always start with a character. Title
+              cannot have special characters except dot, underscore and hyphen.</small>
+      </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-3 col-md-3 col-lg-3">
+        <div class="form-group">
+          <label for="testPlanId">Test Run :</label>
+          <select class="custom-select" #testPlanId formControlName="testPlanId" required>
+            <option *ngFor="let run of testRuns" value="{{run.id}}">{{run.name}}</option>
+          </select>
+        </div>
+        <div
+          *ngIf="submitted || buildForm.valid && formControls.testPlanId.errors && formControls.testPlanId.dirty || formControls.testPlanId.touched">
+          <small *ngIf="formControls.testPlanId.errors?.required" class="validation-message">This field is
+            required.</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="notes">Description :</label>
+      <textarea #notes formControlName="notes" class="form-control" rows="8" required
+        placeholder="Enter Your Description"></textarea>
+    </div>
+    <div
+      *ngIf="submitted || buildForm.valid && formControls.notes.errors && formControls.notes.dirty || formControls.notes.touched">
+      <small *ngIf="formControls.notes.errors?.required" class="validation-message">This field is
+        required.</small>
+    </div>
+
+    <!-- Error message -->
+    <div class="alert alert-danger" *ngIf="serverErrors">
+      {{ serverErrors }}
+    </div>
+
+    <div class="actions">
+      <button type="button" class="btn btn-cancel" (click)="cancel()">Cancel</button>
+      <button type="submit" class="btn btn-default ripple">Create &nbsp;
+        <i class="fa fa-spinner fa-spin" *ngIf="loading"></i>
+      </button>
+    </div>
+
+  </form>
+
+</div>

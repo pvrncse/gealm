@@ -1,0 +1,35 @@
+.toolbar {
+  margin: 20px 20px 0px;
+  display: flex;
+  justify-content: space-between;
+}
+
+#test-run {
+  margin: 0px 20px;
+}
+
+.form-group {
+  margin-top: 1rem;
+  margin-bottom: 0px;
+}
+
+.actions {
+  float: right;
+  padding: 20px;
+}
+
+.actions .btn {
+  margin: 0px 10px;
+  padding: 7px 20px;
+}
+
+small.validation-message {
+  color: #ed5558;
+}
+
+.alert {
+  padding: 5px;
+  width: 47%;
+  margin-top: 12px;
+  line-height: 25px;
+}

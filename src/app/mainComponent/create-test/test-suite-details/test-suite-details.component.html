@@ -1,0 +1,27 @@
+<div class="toolbar">
+  <h5>{{ testSuite.name }}</h5>
+  <div class="actions">
+    <button type="button" class="btn btn-cancel" title="Edit Test Suite" disabled>Edit</button>
+    <button type="button" class="btn btn-default ripple" (click)="showCaseForm()">
+      <i class="fa fa-plus" aria-hidden="true"></i> Create Test Case</button>
+    <button type="button" class="btn btn-default ripple" (click)="showSuiteForm()">
+      <i class="fa fa-plus" aria-hidden="true"></i> Create Test Suite</button>
+  </div>
+</div>
+
+<div class="loader" *ngIf="loading"></div>
+
+<table *ngIf="!loading" class="table_one">
+  <tbody>
+    <tr style="padding-top:10px;">
+      <td>Test Suite Title</td>
+      <td>:&nbsp;&nbsp;</td>
+      <td> {{ testSuite.name }} </td>
+    </tr>
+    <tr>
+      <td>Test Suite Description</td>
+      <td>:</td>
+      <td> {{ testSuite.details }} </td>
+    </tr>
+  </tbody>
+</table>

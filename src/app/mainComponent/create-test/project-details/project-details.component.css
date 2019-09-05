@@ -1,0 +1,29 @@
+.toolbar {
+  margin: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn-cancel {
+  margin-right: 15px;
+}
+
+.enhanced {
+  margin-left: 5%;
+  margin-top: -14px;
+  width: 30%;
+}
+
+.details {
+  padding: 10px 20px;
+}
+
+table {
+  border-collapse: separate;
+  border-spacing: 0 1em;
+  margin-top: -17px;
+}
+
+.table_one {
+  width: 40%;
+}

@@ -1,0 +1,39 @@
+.toolbar {
+  margin: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.table_one {
+  border-collapse: separate;
+  border-spacing: 20px 1em;
+  margin-top: -17px;
+}
+
+.step-table {
+  margin: 20px;
+}
+
+.step-table i {
+  cursor: pointer;
+}
+
+.step-table #clear {
+  color: gray;
+}
+
+.step-table #clear:hover {
+  color: red;
+}
+
+.step-table #done .btn-default {
+  margin-bottom: 5px;
+}
+
+.form-control.ng-untouched.ng-pristine.ng-invalid {
+  box-shadow: none;
+}
+
+.validation-message {
+  color: red;
+}

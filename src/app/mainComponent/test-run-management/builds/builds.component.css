@@ -1,0 +1,17 @@
+.toolbar {
+  margin: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.col-sm-3, .col-md-3, .col-lg-3 {
+  margin-left: 10px;
+}
+
+.builds-table {
+  margin: 30px 25px;
+}
+
+.builds-table td {
+  padding-left: 20px;
+}

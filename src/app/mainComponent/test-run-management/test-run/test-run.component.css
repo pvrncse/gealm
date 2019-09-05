@@ -1,0 +1,36 @@
+.toolbar {
+  margin: 20px 20px 0px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.testrun-table {
+  margin: 30px 25px;
+}
+
+.testrun-table thead th.action {
+  width: 213px;
+}
+
+.testrun-table td {
+  padding-left: 20px;
+}
+
+.testrun-table .btn {
+  line-height: 16px;
+}
+
+.modal-content {
+  border: none;
+}
+
+.modal-header {
+  background-color: #e9ecef;
+  padding: 7px 15px;
+}
+
+.modal-header .close {
+  margin: -8px -1rem -1rem auto;
+}
+
+

@@ -1,0 +1,29 @@
+a {
+  cursor: pointer;
+  word-wrap: break-word;
+  width: -webkit-fill-available;
+}
+
+.flex {
+  display: flex;
+  padding: 7px 0;
+  margin-left: 13px;
+  border-bottom: 1px solid lightgrey;
+}
+
+.flex .material-icons {
+  font-size: 20px;
+  line-height: 1.2;
+  cursor: pointer;
+}
+
+.tree-margin {
+  margin: 0px 0px 0px 20px;
+}
+
+.test-case-margin {
+  padding: 7px 0;
+  margin-left: 36px;
+  display: flex;
+  border-bottom: 1px solid lightgray;
+}

@@ -1,0 +1,79 @@
+<div class="toolbar">
+  <h5>Edit Project</h5>
+</div>
+
+<div class="edit-project">
+  <form [formGroup]="editProjectForm" (ngSubmit)="onSubmit()">
+
+    <div class="row">
+      <div class="col-sm-6 col-md-6 col-lg-6">
+        <div class="form-group">
+          <label for="name">Name:</label>
+          <input #name formControlName="name" required type="text" class="form-control" [(ngModel)]="project.name">
+        </div>
+        <div *ngIf="submitted && formControls.name.errors && formControls.name.dirty || formControls.name.touched">
+          <small *ngIf="formControls.name.errors?.required" class="validation-message">This field is
+            required.</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-6 col-md-6 col-lg-6">
+        <div class="form-group">
+          <label for="prefix">Prefix(Used for testID)</label>
+          <input #prefix formControlName="prefix" required type="text" class="form-control"
+            [(ngModel)]="project.prefix">
+        </div>
+        <div
+          *ngIf="submitted && formControls.prefix.errors && formControls.prefix.dirty || formControls.prefix.touched">
+          <small *ngIf="formControls.prefix.errors?.required" class="validation-message">This field is
+            required.</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="notes">Description:</label>
+      <textarea #notes formControlName="notes" class="form-control" rows="6" required
+        [(ngModel)]="project.notes"></textarea>
+    </div>
+    <div *ngIf="submitted && formControls.notes.errors && formControls.notes.dirty || formControls.notes.touched">
+      <small *ngIf="formControls.notes.errors?.required" class="validation-message">This field is
+        required.</small>
+    </div>
+
+
+    <div class="form-group">
+      <!-- <div class="col-sm-offset-2 col-sm-10"> -->
+      <div class="checkbox">
+        <label>Enhanced Feature</label>
+        <ul>
+          <label><input type="checkbox" formControlName="requirement" [checked]="project.enableRequirements">
+            Requirement</label><br>
+          <label><input type="checkbox" formControlName="testPriority" [checked]="project.enableTestPriority"> Testing
+            Priority</label><br>
+          <label><input type="checkbox" formControlName="testAutomation" [checked]="project.enableAutomation"> Test
+            Automation(Api keys)</label><br>
+          <label><input type="checkbox" formControlName="inventory" [checked]="project.enableInventory">
+            Inventory</label><br>
+          <label><input type="checkbox" formControlName="active" [checked]="project.active"> Active</label><br>
+          <label><input type="checkbox" formControlName="public" [checked]="project.public"> Public</label><br>
+        </ul>
+      </div>
+      <!-- </div> -->
+    </div>
+
+    <!-- Error message -->
+    <div class="alert alert-danger" *ngIf="serverErrors">
+      {{ serverErrors }}
+    </div>
+
+
+    <div class="actions">
+      <button type="button" class="btn cancel" (click)="cancel()">Cancel</button>
+      <button type="submit" class="btn save" [disabled]="!editProjectForm.valid">Save</button>
+    </div>
+
+  </form>
+</div>

@@ -1,0 +1,192 @@
+<div class="toolbar">
+  <h5>Dashboard</h5>
+</div>
+<div class="col-12">
+  <div class="container-fluid bg-3 text-center">
+    <div class="row">
+      <div class="col-sm-3 chart-info">
+        <div class="row">
+          <div class="col-12 padding-l-r-5">
+            <select
+              class="form-control"
+              name="projects"
+              (change)="getCurrentProjectInfo($event)"
+            >
+              <option
+                *ngFor="let project of projects"
+                value="{{ project.id }}"
+                >{{ project.name }}</option
+              >
+            </select>
+          </div>
+          <div class="loader" *ngIf="loading"></div>
+        </div>
+        <div class="row small-info" *ngIf="!loading">
+          <div class="">
+            <p>Total Projects</p>
+            <div>
+              <span class="badge badge-primary">{{
+                projectInfo.totalProjects
+              }}</span>
+            </div>
+          </div>
+          <div class="">
+            <p>Total Test Run</p>
+            <div>
+              <span class="badge badge-success">{{
+                projectInfo.totalTestPlans
+              }}</span>
+            </div>
+          </div>
+          <div class="">
+            <p>Total Test Cases</p>
+            <div>
+              <span class="badge badge-warning">{{
+                projectInfo.totalTestCases
+              }}</span>
+            </div>
+          </div>
+          <div class="">
+            <p>Total Labs</p>
+            <div><span class="badge badge-secondary">456</span></div>
+          </div>
+        </div>
+        <div class="row" *ngIf="!loading">
+          <div style="display: block;text-align:center">
+            <canvas
+              baseChart
+              [datasets]="chartData.datasets"
+              [labels]="chartData.doughnutChartLabels"
+              [chartType]="chartData.doughnutChartType"
+              [options]="chartData.options"
+              [legend]="chartData.legend"
+              height="400px"
+            ></canvas>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="row">
+          <div class="col-12 text-left">
+            Projects
+          </div>
+        </div>
+        <div class="row sm-info-panel">
+          <div class="col-md-11" *ngFor="let info of tempLoopForProjects">
+            <p>
+              <strong>{{ info.name }}</strong
+              ><span class="pull-right pointer">...</span>
+            </p>
+            <div class="pull-left">
+              <span *ngFor="let icon of info.users" class="thumbnail">
+                <img
+                  height="40px"
+                  src="https://via.placeholder.com/60x60?text={{ icon }}"
+                />
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-3 assign-info">
+        <div class="row">
+          <div class="col-12 text-left">
+            Assigned to me
+          </div>
+        </div>
+        <div class="loader" *ngIf="assignLoading"></div>
+        <div class="row sm-info-panel" *ngIf="!assignLoading">
+          <div
+            class="col-md-11 details-pane"
+            *ngFor="let info of projectsAssignedToMe"
+          >
+            <div class="pull-left">
+              <span class="thumbnail">
+                <!-- <img
+                  height="40px"
+                  src="https://via.placeholder.com/60x60?text=User"
+                /> -->
+                <div class="user-img-text" title="{{ userName }}">
+                  {{ userName | getUserFirstLetter }}
+                </div>
+              </span>
+            </div>
+            <p>{{ info.projectName }}</p>
+            <div class="pull-left">
+              <strong>{{ info.role }}</strong>
+            </div>
+            <hr />
+            <div class="grey-text">
+              <div class="">
+                <p>Assigned Date</p>
+                <p>
+                  <strong> {{ info.assignedDate }}</strong>
+                </p>
+              </div>
+              <div class="">
+                <p>Due Date</p>
+                <p>
+                  <strong> {{ info.dueDate }}</strong>
+                </p>
+              </div>
+              <div class="">
+                <p>Priority</p>
+                <p>
+                  <strong> {{ info.priority }}</strong>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-3 activity-info">
+        <div class="row">
+          <div class="col-12 text-left">
+            Activity Steam
+          </div>
+        </div>
+        <div class="loader" *ngIf="activityLoading"></div>
+        <!-- <div class="row">
+            <div class="col-md-11 activity-pane">
+              <div *ngFor="let info of tempLoopForProjects">
+              <div class="pull-left"> 
+                <span class="thumbnail">
+                  <img height="40px" src="https://via.placeholder.com/60x60?text={{tempLoopForProjects[0].users[0]}}"/>
+                </span>
+              </div>
+              <div class="pull-left"><strong>User1</strong></div>
+              <div class="activity-text">asdbajsda</div>
+              </div>
+            </div>
+          </div> -->
+        <div class="row sm-info-panel" *ngIf="!activityLoading">
+          <div
+            class="col-md-11 activity-pane"
+            *ngFor="let info of activityLogs"
+          >
+            <div class="pull-left">
+              <span class="thumbnail">
+                <!-- <img
+                  height="40px"
+                  title="{{ info.userName }}"
+                  src="https://via.placeholder.com/60x60?text={{
+                    info.userName
+                  }}"
+                /> -->
+                <div class="user-img-text" title="{{ userName }}">
+                  {{ info.userName | getUserFirstLetter }}
+                </div>
+              </span>
+            </div>
+            <p>
+              <strong>{{ info.userName }}</strong>
+            </p>
+            <div class="pull-left activity-text">
+              {{ info.notes }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
